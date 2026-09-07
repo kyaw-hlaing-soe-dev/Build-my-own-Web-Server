@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,7 +36,10 @@ public class Server {
             }
         }
 
-    private static void handleClient(Socket client) throws IOException {
+    private static void handleClient(Socket client) throws Exception {
+
+        Thread.sleep(10000);
+        System.out.println("Current time in seconds: " + Instant.now().getEpochSecond());
 
         // Get the input stream
         BufferedReader br = new BufferedReader(
