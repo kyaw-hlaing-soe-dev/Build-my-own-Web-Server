@@ -1,8 +1,12 @@
 const path = require("node:path");
+const compression = require("compression");
 const express = require("express");
 
 const app = express();
 const port = 8080;
+
+// Compress even these small demo responses so the behavior is easy to inspect.
+app.use(compression({ threshold: 0 }));
 
 app.use(
   "/static",
