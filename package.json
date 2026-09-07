@@ -2,9 +2,9 @@
   "name": "build-my-own-web-server",
   "version": "1.0.0",
   "description": "A small project comparing a custom Java HTTP server with Express.",
-  "main": "index.js",
+  "main": "src/main/resources/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/main/resources/index.js"
   },
   "license": "ISC",
   "dependencies": {
