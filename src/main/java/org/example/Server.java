@@ -7,12 +7,16 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Server {
 
     final private static int PORT = 8080;
+    final private static String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
+    final private static String DYNAMIC = "/dynamic.html";
     final private static byte[] NOT_FOUND_HTML =
             "<h1>Not found :(</h1>".getBytes(StandardCharsets.UTF_8);
 
@@ -52,7 +56,9 @@ public class Server {
 
         Path filePath = Paths.get(".", path);
 
-        if (Files.isRegularFile(filePath)) {
+        if (DYNAMIC.equals(path)) {
+            sendResponse(client, "200 OK", "text/html", getDynamicResponse());
+        } else if (Files.isRegularFile(filePath)) {
             String contentType = Files.probeContentType(filePath);
             if (contentType == null) {
                 contentType = "application/octet-stream";
@@ -64,6 +70,15 @@ public class Server {
         }
 
         }
+
+    private static byte[] getDynamicResponse() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT_NOW);
+        String response = String.format(
+                "<h1>Dynamic response</h1> Today is %s",
+                LocalDateTime.now().format(formatter));
+
+        return response.getBytes(StandardCharsets.UTF_8);
+    }
 
     private static void sendResponse(Socket client, String status,
                                      String contentType, byte[] content) throws IOException {
