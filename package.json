@@ -1,0 +1,13 @@
+{
+  "name": "build-my-own-web-server",
+  "version": "1.0.0",
+  "description": "A small project comparing a custom Java HTTP server with Express.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
