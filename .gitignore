@@ -41,3 +41,7 @@ build/
 ### Node.js ###
 node_modules/
 npm-debug.log*
+
+### Local HTTPS certificates ###
+/src/main/resources/certs/server.key
+/src/main/resources/certs/server.cert

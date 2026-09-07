@@ -4,6 +4,7 @@
   "description": "A small project comparing a custom Java HTTP server with Express.",
   "main": "src/main/resources/index.js",
   "scripts": {
+    "generate:cert": "sh scripts/generate-dev-certificate.sh",
     "start": "node src/main/resources/index.js"
   },
   "license": "ISC",
